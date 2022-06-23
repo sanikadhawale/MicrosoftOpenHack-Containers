@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userprofile-skl
+  namespace: api
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: userprofile
+          image: registryeqf2771.azurecr.io/tripinsights/userprofile:1.0
+          ports:
+            - containerPort: 80
+          env:
+          - name: SQL_USER
+            value: "sqladmineQf2771"
+          - name: SQL_DBNAME
+            value: "mydrivingDB"
+          - name: SQL_PASSWORD
+            value: "Demo@pass123"
+          - name: SQL_SERVER
+            value: "sqlservereqf2771"

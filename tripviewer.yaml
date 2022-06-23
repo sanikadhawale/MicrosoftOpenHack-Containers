@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tripviewer-skl
+  namespace: web
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: tripviewer
+          image: registryeqf2771.azurecr.io/tripinsights/tripviewer:1.0
+          ports:
+            - containerPort: 82
+          env:
+          - name: userprofile
+            value: "http://userprofile"
+          - name: trips
+            value: "http://trips"
+          - name: SQL_USER
+            value: "sqladmineQf2771"
+          - name: SQL_DBNAME
+            value: "mydrivingDB"
+          - name: SQL_PASSWORD
+            value: "Demo@pass123"
+          - name: SQL_SERVER
+            value: "sqlservereqf2771"
+
+
+
+
+
+

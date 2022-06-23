@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-trips
+spec:
+  selector:
+    app: trips
+  ports:
+    - port: 80
+      targetPort: 82
+  type: LoadBalancer

@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trips-skl
+  namespace: api
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: trips
+          image: registryeqf2771.azurecr.io/tripinsights/trips:1.0
+          ports:
+            - containerPort: 80
+          env:
+          - name: SQLUSER
+            value: "sqladmineQf2771"
+          - name: SQLDBNAME
+            value: "mydrivingDB"
+          - name: SQLPASSWORD
+            value: "Demo@pass123"
+          - name: SQLSERVER
+            value: "sqlservereqf2771"
+
+

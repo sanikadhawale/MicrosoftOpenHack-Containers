@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-java-skl
+  namespace: api
+  labels:
+    app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: user-java
+          image: registryeqf2771.azurecr.io/tripinsights/user-java:1.0
+          ports:
+            - containerPort: 80
